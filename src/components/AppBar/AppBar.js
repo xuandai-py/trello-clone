@@ -1,3 +1,4 @@
+import React from 'react'
 import './AppBar.scss'
 
 const AppBar = () => {
@@ -6,4 +7,4 @@ const AppBar = () => {
     )
 }
 
-export default AppBar;
+export default AppBar

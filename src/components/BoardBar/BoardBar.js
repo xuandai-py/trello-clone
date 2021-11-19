@@ -1,4 +1,5 @@
-import './BoardBar.scss';
+import './BoardBar.scss'
+import React from 'react'
 
 const BoardBar = () => {
     return (
@@ -6,4 +7,4 @@ const BoardBar = () => {
     )
 }
 
-export default BoardBar;
+export default BoardBar
