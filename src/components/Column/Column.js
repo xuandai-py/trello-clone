@@ -1,19 +1,18 @@
-import Task from 'components/Task/Task';
+import Card from 'components/Card/Card';
 import './Column.scss';
+import { mapOrder } from 'utilities/sorts';
 
-const Column = () => {
+function Column(props) {
+    const {column} = props
+    const cards = mapOrder(column.cards, column.cardOrder, 'id')
+
+    console.log(column.title);
     return (
         <>
             <div className="column">
-                <header>Todo</header>
-                <ul className="task-list">
-                    <Task />
-                    {/* <li className="task-item">Pick a task to take very first step</li>
-                    <li className="task-item">Pick a task to take very first step</li>
-                    <li className="task-item">Pick a task to take very first step</li>
-                    <li className="task-item">Pick a task to take very first step</li>
-                    <li className="task-item">Pick a task to take very first step</li> */}
-                    
+                <header>{column.title}</header>
+                <ul className="card-list">
+                    {cards.map((card) => <Card key={card.id} card={card}/>)}
 
                 </ul>
                 <footer>Add another card</footer>
