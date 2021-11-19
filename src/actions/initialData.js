@@ -22,14 +22,14 @@ export const initialData = {
                             boardId: 'board-1',
                             columnId: 'column-1',
                             title: 'Title of card 2',
-                            cover: null
+                            cover: 'https://picsum.photos/id/684/600/400'
                         },
                         {
                             id: 'card-3',
                             boardId: 'board-1',
                             columnId: 'column-1',
                             title: 'Title of card 3',
-                            cover: null
+                            cover: 'https://picsum.photos/id/684/600/400'
                         }
                     ]
                 },
@@ -73,7 +73,7 @@ export const initialData = {
                     id: 'column-3',
                     boardId: 'board-1',
                     title: 'To do column 3',
-                    cardOrder: ['card-8', 'card-9',],
+                    cardOrder: ['card-8', 'card-9'],
                     cards: [
                         {
                             id: 'card-8',
