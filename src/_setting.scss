@@ -9,9 +9,13 @@ $board-content-height: (100vh - $navbar-app-height - $navbar-board-height);
 // colors
 $board-bg-color: #3e7494;
 $common-element-bg-color: rgba(255, 255, 255, 0.24);
+$app-main-text-color: #333;
 // screen
 $screen-lg: 1201px;
 $screen-md: 992px;
 $screen-sm: 768px;
 $screen-phone: 480px;
 $screen-ip6-down: '(max-width: 375px)';
+
+// border-radius
+$column-border-radius: 4px;
