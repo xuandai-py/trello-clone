@@ -37,7 +37,7 @@ const BoardContent = () => {
     useEffect(() => {
         if (newColumnInputRef && newColumnInputRef.current) { // exist
             newColumnInputRef.current.focus(),
-            newColumnInputRef.current.select()
+                newColumnInputRef.current.select()
         }
     }, [openAddNewColumn])
     if (isEmpty(board)) {
@@ -100,6 +100,26 @@ const BoardContent = () => {
         toggleAddNewColumn()
     }
 
+    const onUpdateColumn = (newColumnToUpdate) => {
+        const columnIdToUpdate = newColumnToUpdate.id
+        let newColumns = [...columns]
+        const columnIndexToUpdate = newColumns.find(i => i.id === columnIdToUpdate)
+
+        if (columnIdToUpdate._destroy) {
+            newColumns.splice(columnIndexToUpdate, 1)
+        } else {
+            newColumns.splice(columnIndexToUpdate, 1, newColumnToUpdate)
+        }
+
+        let newBoard = { ...board }
+        newBoard.columnOrder = newColumns.map(cId => cId.id)
+        newBoard.columns = newColumns
+        setColumns(newColumns)
+        setBoard(newBoard)
+
+
+    }
+
     return (
         <div className="board-content">
             <Container
@@ -115,7 +135,7 @@ const BoardContent = () => {
             >
                 {columns.map((column) =>
                     <Draggable key={column.id}>
-                        <Column column={column} onCardDrop={onCardDrop} />
+                        <Column column={column} onCardDrop={onCardDrop} onUpdateColumn={onUpdateColumn} />
                     </Draggable>
                 )}
             </Container>
