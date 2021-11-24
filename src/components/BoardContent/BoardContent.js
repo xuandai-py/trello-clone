@@ -2,7 +2,7 @@ import Column from 'components/Column/Column'
 import React, { useRef } from 'react'
 import './BoardContent.scss'
 import { initialData } from 'actions/initialData'
-import { useState, useEffect, useCallback } from 'react'
+import { useState, useEffect } from 'react'
 import { isEmpty } from 'lodash'
 import { mapOrder } from 'utilities/sorts'
 import { Draggable, Container } from 'react-smooth-dnd'
@@ -13,10 +13,11 @@ const BoardContent = () => {
 
     const [board, setBoard] = useState({})
     const [columns, setColumns] = useState([])
-    const [openAddNewColumn, setOpenAddNewColumn] = useState(false)
+    const [openAddNewColumnForm, setOpenAddNewColumnForm] = useState(false)
+    const toggleAddNewColumn = () => setOpenAddNewColumnForm(!openAddNewColumnForm)
     const newColumnInputRef = useRef(null)
     const [newColumnTitle, setNewColumnTitle] = useState('')
-    const onNewColumnTitleChange = useCallback((e) => setNewColumnTitle(e.target.value), [])
+    const onNewColumnTitleChange = (e) => setNewColumnTitle(e.target.value)
     // ******************* changeInputValue
 
 
@@ -39,7 +40,7 @@ const BoardContent = () => {
             newColumnInputRef.current.focus(),
                 newColumnInputRef.current.select()
         }
-    }, [openAddNewColumn])
+    }, [openAddNewColumnForm])
     if (isEmpty(board)) {
         return (
             <div className="not-found">Board not found</div>
@@ -56,9 +57,6 @@ const BoardContent = () => {
         setColumns(newColumns)
         setBoard(newBoard)
 
-        console.log(newBoard)
-        console.log(newColumns)
-        console.log(columns)
     }
 
     const onCardDrop = (columnId, dropResult) => {
@@ -71,7 +69,7 @@ const BoardContent = () => {
         }
     }
 
-    const toggleAddNewColumn = () => setOpenAddNewColumn(!openAddNewColumn)
+
 
 
     const addNewColumn = () => {
@@ -103,11 +101,13 @@ const BoardContent = () => {
     const onUpdateColumn = (newColumnToUpdate) => {
         const columnIdToUpdate = newColumnToUpdate.id
         let newColumns = [...columns]
-        const columnIndexToUpdate = newColumns.find(i => i.id === columnIdToUpdate)
-
-        if (columnIdToUpdate._destroy) {
+        const columnIndexToUpdate = newColumns.findIndex(i => i.id === columnIdToUpdate)
+        console.log(columnIndexToUpdate)
+        if (newColumnToUpdate._destroy) {
+            console.log(columnIndexToUpdate)
             newColumns.splice(columnIndexToUpdate, 1)
         } else {
+            console.log(newColumnToUpdate)
             newColumns.splice(columnIndexToUpdate, 1, newColumnToUpdate)
         }
 
@@ -116,10 +116,12 @@ const BoardContent = () => {
         newBoard.columns = newColumns
         setColumns(newColumns)
         setBoard(newBoard)
-
+        console.log(newBoard);
+        console.log(board);
 
     }
 
+    
     return (
         <div className="board-content">
             <Container
@@ -142,11 +144,11 @@ const BoardContent = () => {
             <BootstrapContainer className="bootstrap-container">
                 <Row className="last-card-row">
                     <Col className="add-new-column" onClick={toggleAddNewColumn}>
-                        <i className="fa fa-plus icon" />Add another card
+                        <i className="fa fa-plus icon" />Add another column
                     </Col>
                 </Row>
 
-                {openAddNewColumn &&
+                {openAddNewColumnForm &&
                     <Row className="last-card-row">
                         <Col className="enter-new-column">
                             <Form.Control
@@ -160,7 +162,7 @@ const BoardContent = () => {
                                 onKeyDown={event => (event.key === 'Enter') && addNewColumn()}
                             />
                             <Button variant="success" size="sm" onClick={addNewColumn}>Add column</Button>
-                            <span className="cancel-new-column" onClick={toggleAddNewColumn}>
+                            <span className="cancel-icon" onClick={toggleAddNewColumn}>
                                 <i className="fa fa-times" />
                             </span>
                         </Col>

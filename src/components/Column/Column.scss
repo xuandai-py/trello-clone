@@ -18,7 +18,8 @@ $column-height: calc(#{$board-content-height} - #{$gap * 2});
   }
 
   header.column-drag-handle {
-    padding-left: 15px;
+    //padding-left: 15px;
+    padding: 5px 8px;
     height: $column-header-height;
     line-height: $column-header-height;
     font-size: 16px;
@@ -46,6 +47,7 @@ $column-height: calc(#{$board-content-height} - #{$gap * 2});
           &:after {
             content: "...";
             border: none;
+            vertical-align: 1.225em;
           }
           &:hover {
             background-color: darken($column-bg-color, 10);
@@ -117,6 +119,14 @@ $column-height: calc(#{$board-content-height} - #{$gap * 2});
       background-color: rgba(150, 150, 200, 0.1);
       border: 1px dashed #abc;
       margin: 5px;
+    }
+
+    .add-new-card-area{
+      .textarea-enter-new-card{
+        min-height: 54px;
+        max-height: 162px;
+        
+      }
     }
   }
 }
