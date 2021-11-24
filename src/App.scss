@@ -54,4 +54,16 @@ body {
       border: 1px solid $input-border-color;
     }
   }
+
+  span.cancel-icon{
+    margin-left: $gap;
+    cursor: pointer;
+    
+    i{
+      font-size: 18px;
+      &:hover{
+        color: darken($color: #000000, $amount: 10)
+      }
+    }
+  }
 }

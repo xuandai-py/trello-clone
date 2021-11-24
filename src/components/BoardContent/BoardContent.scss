@@ -59,18 +59,6 @@
       margin: 5px 0;
     }
 
-    span.cancel-new-column{
-      margin-left: $gap;
-      cursor: pointer;
-      
-      i{
-        font-size: 18px;
-        &:hover{
-          color: darken($color: #000000, $amount: 10)
-        }
-      }
-    }
-
     .last-card-row{
       margin-bottom: 5px;
     }
